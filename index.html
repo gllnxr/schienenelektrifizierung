@@ -169,9 +169,15 @@
         map.createPane('pane_open_data_strecken_eletrifiz_1');
         map.getPane('pane_open_data_strecken_eletrifiz_1').style.zIndex = 401;
         map.getPane('pane_open_data_strecken_eletrifiz_1').style['mix-blend-mode'] = 'normal';
-        var layer_open_data_strecken_eletrifiz_1 = new L.geoJson(json_open_data_strecken_eletrifiz_1, {
-            attribution: '',
-            interactive: false,
+        var layer_open_data_strecken_eletrifiz_1 = new L.vectorGrid.slicer(json_open_data_strecken_eletrifiz_1, {
+            rendererFactory: L.canvas.tile,
+            vectorTileLayerStyles: {
+                sliced: {
+                    color: 'blue',
+                    weight: 2
+                }
+            },
+            interactive: true,
             dataVar: 'json_open_data_strecken_eletrifiz_1',
             layerName: 'layer_open_data_strecken_eletrifiz_1',
             pane: 'pane_open_data_strecken_eletrifiz_1',
@@ -253,7 +259,14 @@
         map.createPane('pane_open_data_strecken_bahnart_2');
         map.getPane('pane_open_data_strecken_bahnart_2').style.zIndex = 402;
         map.getPane('pane_open_data_strecken_bahnart_2').style['mix-blend-mode'] = 'normal';
-        var layer_open_data_strecken_bahnart_2 = new L.geoJson(json_open_data_strecken_bahnart_2, {
+        var layer_open_data_strecken_bahnart_2 = new L.vectorGrid.slicer(json_open_data_strecken_bahnart_2, {
+            rendererFactory: L.canvas.tiles,
+            vectorTileLayerStyles: {
+              sliced: {
+                  color: 'blue',
+                  weight: 2
+              }
+            },
             attribution: '',
             interactive: true,
             dataVar: 'json_open_data_strecken_bahnart_2',
