@@ -170,21 +170,24 @@
         map.createPane('pane_open_data_strecken_eletrifiz_1');
         map.getPane('pane_open_data_strecken_eletrifiz_1').style.zIndex = 401;
         map.getPane('pane_open_data_strecken_eletrifiz_1').style['mix-blend-mode'] = 'normal';
-        var layer_open_data_strecken_eletrifiz_1 = new L.vectorGrid.slicer(json_open_data_strecken_eletrifiz_1, {
-            rendererFactory: L.canvas.tile,
-            vectorTileLayerStyles: {
-                sliced: {
-                    color: 'blue',
-                    weight: 2
-                }
-            },
-            interactive: true,
-            dataVar: 'json_open_data_strecken_eletrifiz_1',
-            layerName: 'layer_open_data_strecken_eletrifiz_1',
-            pane: 'pane_open_data_strecken_eletrifiz_1',
-            onEachFeature: pop_open_data_strecken_eletrifiz_1,
-            style: style_open_data_strecken_eletrifiz_1_0,
-        });
+       var layer_open_data_strecken_eletrifiz_1 = L.vectorGrid.slicer(json_open_data_strecken_eletrifiz_1, {
+  rendererFactory: L.canvas.tile,
+  vectorTileLayerStyles: {
+    sliced: {
+      color: 'blue',
+      weight: 2
+    }
+  },
+  interactive: true
+});
+layer_open_data_strecken_eletrifiz_1.on('click', function (e) {
+  var props = e.layer.properties;
+  L.popup()
+    .setLatLng(e.latlng)
+    .setContent("Strecke: " + (props.streckennr || 'unbekannt'))
+    .openOn(map);
+});
+bounds_group.addLayer(layer_open_data_strecken_eletrifiz_1);
         bounds_group.addLayer(layer_open_data_strecken_eletrifiz_1);
         map.addLayer(layer_open_data_strecken_eletrifiz_1);
         function pop_open_data_strecken_bahnart_2(feature, layer) {
