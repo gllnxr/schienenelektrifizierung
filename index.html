@@ -28,7 +28,6 @@
         <script src="js/qgis2web_expressions.js"></script>
         <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
         <script src="js/leaflet.rotatedMarker.js"></script>
-        <script src="https://unpkg.com/leaflet.vectorgrid@1.3.0/dist/Leaflet.VectorGrid.bundled.js"></script>
         <script src="js/leaflet.pattern.js"></script>
         <script src="js/leaflet-hash.js"></script>
         <script src="js/Autolinker.min.js"></script>
@@ -170,24 +169,15 @@
         map.createPane('pane_open_data_strecken_eletrifiz_1');
         map.getPane('pane_open_data_strecken_eletrifiz_1').style.zIndex = 401;
         map.getPane('pane_open_data_strecken_eletrifiz_1').style['mix-blend-mode'] = 'normal';
-       var layer_open_data_strecken_eletrifiz_1 = L.vectorGrid.slicer(json_open_data_strecken_eletrifiz_1, {
-  rendererFactory: L.canvas.tile,
-  vectorTileLayerStyles: {
-    sliced: {
-      color: 'blue',
-      weight: 2
-    }
-  },
-  interactive: true
-});
-layer_open_data_strecken_eletrifiz_1.on('click', function (e) {
-  var props = e.layer.properties;
-  L.popup()
-    .setLatLng(e.latlng)
-    .setContent("Strecke: " + (props.streckennr || 'unbekannt'))
-    .openOn(map);
-});
-bounds_group.addLayer(layer_open_data_strecken_eletrifiz_1);
+        var layer_open_data_strecken_eletrifiz_1 = new L.geoJson(json_open_data_strecken_eletrifiz_1, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_open_data_strecken_eletrifiz_1',
+            layerName: 'layer_open_data_strecken_eletrifiz_1',
+            pane: 'pane_open_data_strecken_eletrifiz_1',
+            onEachFeature: pop_open_data_strecken_eletrifiz_1,
+            style: style_open_data_strecken_eletrifiz_1_0,
+        });
         bounds_group.addLayer(layer_open_data_strecken_eletrifiz_1);
         map.addLayer(layer_open_data_strecken_eletrifiz_1);
         function pop_open_data_strecken_bahnart_2(feature, layer) {
@@ -263,14 +253,7 @@ bounds_group.addLayer(layer_open_data_strecken_eletrifiz_1);
         map.createPane('pane_open_data_strecken_bahnart_2');
         map.getPane('pane_open_data_strecken_bahnart_2').style.zIndex = 402;
         map.getPane('pane_open_data_strecken_bahnart_2').style['mix-blend-mode'] = 'normal';
-        var layer_open_data_strecken_bahnart_2 = new L.vectorGrid.slicer(json_open_data_strecken_bahnart_2, {
-            rendererFactory: L.canvas.tiles,
-            vectorTileLayerStyles: {
-              sliced: {
-                  color: 'blue',
-                  weight: 2
-              }
-            },
+        var layer_open_data_strecken_bahnart_2 = new L.geoJson(json_open_data_strecken_bahnart_2, {
             attribution: '',
             interactive: true,
             dataVar: 'json_open_data_strecken_bahnart_2',
